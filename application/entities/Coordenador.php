@@ -1,35 +1,37 @@
 <?php
 namespace application\entities;
+
 /**
  *
  */
- class Secretaria extends Pessoa{
+ class Coordenador extends Pessoa{
 
  private $id;
- private $matricula;
- private $ctpsnumero; //carteira de trabalho - numero
+ private $cod;
+ private $ctpsnumero;//carteira de trabalho - numero
  private $ctpsdataexped;//carteira de trabalho - data de expedicao
 
- public function __construct($id = 0,$matricula = 0,$ctpsnumero= "" ,$ctpsdataexped= "" ){
 
-   $this->id = $id;
-   $this->matricula = $matricula;
-   $this->ctpsnumero = $ctpsnumero;
-   $this->ctpsdataexped = $ctpsdataexped;
-  }
-
- public static function construct($array){
-   $obj = new Secretaria();
-
-   $obj->setId( $array['id']);
-   $obj->setMatricula( $array['matricula']);
-   $obj->setCtpsnumero( $array['ctpsnumero']);
-   $obj->setCtpsdataexped( $array['ctpsdataexped']);
- return $obj;
+ public function __construct($id = 0,$cod = 0,$ctpsnumero= "" ,$ctpsdataexped= "" ){
+         $this->id = $id;
+         $this->cod = $cod;
+         $this->ctpsnumero = $ctpsnumero;
+         $this->ctpsdataexped = $ctpsdataexped;
  }
 
+ public static function construct($array){
+         $obj = new Coordenador();
+
+         $obj->setId( $array['id']);
+         $obj->setCod( $array['cod']);
+         $obj->setCtpsnumero( $array['ctpsnumero']);
+         $obj->setCtpsdataexped( $array['ctpsdataexped']);
+         return $obj;
+ }
+
+
  /**
-  *getters and setters da classe
+  *  getters e setters
   */
  public function getId(){
  return $this->id;
@@ -39,12 +41,12 @@ namespace application\entities;
   $this->id=$id;
  }
 
- public function getMatricula(){
- return $this->matricula;
+ public function getCod(){
+ return $this->cod;
  }
 
- public function setMatricula($matricula){
-  $this->matricula=$matricula;
+ public function setCod($cod){
+  $this->cod=$cod;
  }
 
  public function getCtpsnumero(){
@@ -67,13 +69,13 @@ namespace application\entities;
   *
   */
  public function equals($object){
- if($object instanceof Secretaria){
+ if($object instanceof Coordenador){
 
  if($this->id!=$object->id){
  return false;
  }
 
- if($this->matricula!=$object->matricula){
+ if($this->cod!=$object->cod){
  return false;
  }
 
@@ -85,12 +87,11 @@ namespace application\entities;
  return false;
  }
 
-     return true;
-
-               }
-               else{
-               return false;
-               }
+ return true;
+ }
+         else{
+             return false;
+             }
 
  }
 
@@ -100,16 +101,11 @@ namespace application\entities;
  public function toString(){
 
   return "  [id:" .$this->id. "]
-            [matricula:" .$this->matricula. "]
-            [ctpsnumero:" .$this->ctpsnumero. "]
+            [cod:" .$this->cod. "]
+            [ctpsnumero:" .$this->ctpsnumero. "]  
             [ctpsdataexped:" .$this->ctpsdataexped. "]  " ;
           }
 
  }
-
-
-
-
-
 
 ?>

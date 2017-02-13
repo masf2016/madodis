@@ -1,14 +1,14 @@
 <?php
-namespace application\entities;
+
 /**
  *
  */
- class Secretaria extends Pessoa{
+ class Administrador extends Pessoa{
 
  private $id;
  private $matricula;
  private $ctpsnumero; //carteira de trabalho - numero
- private $ctpsdataexped;//carteira de trabalho - data de expedicao
+ private $ctpsdataexped; //carteira de trabalho - data de expedicao
 
  public function __construct($id = 0,$matricula = 0,$ctpsnumero= "" ,$ctpsdataexped= "" ){
 
@@ -19,7 +19,7 @@ namespace application\entities;
   }
 
  public static function construct($array){
-   $obj = new Secretaria();
+   $obj = new Administrador();
 
    $obj->setId( $array['id']);
    $obj->setMatricula( $array['matricula']);
@@ -67,7 +67,7 @@ namespace application\entities;
   *
   */
  public function equals($object){
- if($object instanceof Secretaria){
+ if($object instanceof Administrador){
 
  if($this->id!=$object->id){
  return false;
@@ -106,9 +106,6 @@ namespace application\entities;
           }
 
  }
-
-
-
 
 
 
