@@ -1,0 +1,6 @@
+<?php
+
+define('PREFIX','Madodis');
+
+
+?>
