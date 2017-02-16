@@ -11,9 +11,9 @@
         <h1 class="logo-site"> Logo Site</h1>
             <nav id="menu">
               <ul>
-                <li> <a href="#"></a> </li>
-                <li> <a href="#"></a> </li>
-                <li> <a href="#"></a> </li>
+                <li> <a href="<?=PATH?>"></a> </li>
+                <li> <a href="<?=PATH?>"></a> </li>
+                <li> <a href="<?=PATH?>"></a> </li>
               </ul>
             </nav>
       </div>
