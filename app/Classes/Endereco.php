@@ -6,7 +6,7 @@ namespace \application\entities;
  class Endereco{
 
  private $id;
- private $endereco;
+ private $endereco; //logradouro
  private $numero;
  private $complemento;
  private $bairro;

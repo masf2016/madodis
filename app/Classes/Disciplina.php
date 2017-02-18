@@ -10,9 +10,9 @@ namespace \application\entities;
  private $Curso;//FK
  private $descricao;
  private $cargahoraria;//horas aula totais da disciplina
- private $modulo; //modulo ao qual ela pertence no curso
+ private $modulo; //O modulo ao qual a disciplina em questao pertence no curso
  private $ano;//ano vigente da disciplina
- private $descricao;
+
 
  public function __construct($id = 0 ,
                              $tipoensino= "" ,
@@ -20,8 +20,7 @@ namespace \application\entities;
                              $descricao= "" ,
                              $cargahoraria = 0 ,
                              $modulo = 0 ,
-                             $ano = 0 ,
-                             $descricao= "" ){
+                             $ano = 0 ){
          $this->id = $id;
          $this->tipoensino = $tipoensino;
          $this->Curso = $Curso;
@@ -29,7 +28,7 @@ namespace \application\entities;
          $this->cargahoraria = $cargahoraria;
          $this->modulo = $modulo;
          $this->ano = $ano;
-         $this->descricao = $descricao;
+
  }
 
  public static function construct($array){
@@ -42,7 +41,6 @@ namespace \application\entities;
          $obj->setCargahoraria( $array['cargahoraria']);
          $obj->setModulo( $array['modulo']);
          $obj->setAno( $array['ano']);
-         $obj->setDescricao( $array['descricao']);
          return $obj;
  }
 
@@ -105,13 +103,6 @@ namespace \application\entities;
   $this->ano=$ano;
  }
 
- public function getDescricao(){
- return $this->descricao;
- }
-
- public function setDescricao($descricao){
-  $this->descricao=$descricao;
- }
 
  /**
   *
@@ -146,11 +137,6 @@ namespace \application\entities;
  if($this->ano!=$object->ano){
  return false;
  }
-
- if($this->descricao!=$object->descricao){
- return false;
- }
-
        return true;
              }
              else{
@@ -171,7 +157,6 @@ namespace \application\entities;
             [cargahoraria:" .$this->cargahoraria. "]
             [modulo:" .$this->modulo. "]
             [ano:" .$this->ano. "]
-            [descricao:" .$this->descricao. "]  " ;
             }
 
  }

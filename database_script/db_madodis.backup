@@ -1,0 +1,978 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.1
+-- Dumped by pg_dump version 9.1.1
+-- Started on 2017-02-18 02:46:52
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 185 (class 3079 OID 11638)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1933 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 163 (class 1259 OID 16402)
+-- Dependencies: 5
+-- Name: tb_administardor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_administardor (
+    id integer NOT NULL,
+    matricula character varying(15) NOT NULL,
+    ctpsnumero character varying(25) NOT NULL,
+    ctpsdataexped date NOT NULL
+);
+
+
+ALTER TABLE public.tb_administardor OWNER TO postgres;
+
+--
+-- TOC entry 164 (class 1259 OID 16405)
+-- Dependencies: 5 163
+-- Name: tb_administardor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_administardor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_administardor_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1934 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: tb_administardor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_administardor_id_seq OWNED BY tb_administardor.id;
+
+
+--
+-- TOC entry 1935 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: tb_administardor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_administardor_id_seq', 1, false);
+
+
+--
+-- TOC entry 165 (class 1259 OID 16411)
+-- Dependencies: 5
+-- Name: tb_aluno; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_aluno (
+    id integer NOT NULL,
+    matricula character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.tb_aluno OWNER TO postgres;
+
+--
+-- TOC entry 166 (class 1259 OID 16414)
+-- Dependencies: 5 165
+-- Name: tb_aluno_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_aluno_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_aluno_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1936 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: tb_aluno_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_aluno_id_seq OWNED BY tb_aluno.id;
+
+
+--
+-- TOC entry 1937 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: tb_aluno_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_aluno_id_seq', 1, false);
+
+
+--
+-- TOC entry 167 (class 1259 OID 16420)
+-- Dependencies: 5
+-- Name: tb_coordenador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_coordenador (
+    id integer NOT NULL,
+    matricula character varying(15) NOT NULL,
+    ctpsnumero character varying(25) NOT NULL,
+    ctpsdataexped date NOT NULL
+);
+
+
+ALTER TABLE public.tb_coordenador OWNER TO postgres;
+
+--
+-- TOC entry 168 (class 1259 OID 16423)
+-- Dependencies: 167 5
+-- Name: tb_coordenador_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_coordenador_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_coordenador_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1938 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: tb_coordenador_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_coordenador_id_seq OWNED BY tb_coordenador.id;
+
+
+--
+-- TOC entry 1939 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: tb_coordenador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_coordenador_id_seq', 1, false);
+
+
+--
+-- TOC entry 169 (class 1259 OID 16429)
+-- Dependencies: 5
+-- Name: tb_curso; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_curso (
+    id integer NOT NULL,
+    cod character varying(10) NOT NULL,
+    nome character varying(50) NOT NULL,
+    cursodescr character varying(200),
+    numperiodos smallint NOT NULL,
+    cursoarea character varying(100)
+);
+
+
+ALTER TABLE public.tb_curso OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 16432)
+-- Dependencies: 5 169
+-- Name: tb_curso_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_curso_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_curso_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1940 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: tb_curso_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_curso_id_seq OWNED BY tb_curso.id;
+
+
+--
+-- TOC entry 1941 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: tb_curso_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_curso_id_seq', 1, false);
+
+
+--
+-- TOC entry 171 (class 1259 OID 16438)
+-- Dependencies: 5
+-- Name: tb_disciplina; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_disciplina (
+    id integer NOT NULL,
+    tipoensino character varying(20) NOT NULL,
+    descricao character varying(250),
+    cargahoraria smallint NOT NULL,
+    modulo smallint,
+    ano smallint NOT NULL
+);
+
+
+ALTER TABLE public.tb_disciplina OWNER TO postgres;
+
+--
+-- TOC entry 1942 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: COLUMN tb_disciplina.tipoensino; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_disciplina.tipoensino IS 'define se o curso e voltado para graduacao ou pos';
+
+
+--
+-- TOC entry 1943 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: COLUMN tb_disciplina.descricao; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_disciplina.descricao IS 'descricao previa do curso';
+
+
+--
+-- TOC entry 1944 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: COLUMN tb_disciplina.cargahoraria; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_disciplina.cargahoraria IS 'horas aula totais da disciplina';
+
+
+--
+-- TOC entry 1945 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: COLUMN tb_disciplina.modulo; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_disciplina.modulo IS 'O modulo ao qual a disciplina em questao pertence no curso';
+
+
+--
+-- TOC entry 1946 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: COLUMN tb_disciplina.ano; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_disciplina.ano IS 'ano vigente da disciplina';
+
+
+--
+-- TOC entry 172 (class 1259 OID 16441)
+-- Dependencies: 5 171
+-- Name: tb_disciplina_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_disciplina_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_disciplina_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1947 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: tb_disciplina_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_disciplina_id_seq OWNED BY tb_disciplina.id;
+
+
+--
+-- TOC entry 1948 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: tb_disciplina_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_disciplina_id_seq', 1, false);
+
+
+--
+-- TOC entry 173 (class 1259 OID 16447)
+-- Dependencies: 5
+-- Name: tb_endereco; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_endereco (
+    id integer NOT NULL,
+    endereco character varying(200) NOT NULL,
+    numero smallint NOT NULL,
+    complemento character varying(25) NOT NULL,
+    bairro character varying(150) NOT NULL,
+    cidade character varying(40) NOT NULL,
+    estado character varying(15) NOT NULL,
+    cep character varying(10) NOT NULL
+);
+
+
+ALTER TABLE public.tb_endereco OWNER TO postgres;
+
+--
+-- TOC entry 1949 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: COLUMN tb_endereco.endereco; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_endereco.endereco IS 'logradouro';
+
+
+--
+-- TOC entry 174 (class 1259 OID 16450)
+-- Dependencies: 173 5
+-- Name: tb_endereco_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_endereco_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_endereco_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1950 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: tb_endereco_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_endereco_id_seq OWNED BY tb_endereco.id;
+
+
+--
+-- TOC entry 1951 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: tb_endereco_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_endereco_id_seq', 1, false);
+
+
+--
+-- TOC entry 175 (class 1259 OID 16457)
+-- Dependencies: 5
+-- Name: tb_instituicao; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_instituicao (
+    id integer NOT NULL,
+    nome character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.tb_instituicao OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 16460)
+-- Dependencies: 175 5
+-- Name: tb_instituicao_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_instituicao_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_instituicao_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1952 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: tb_instituicao_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_instituicao_id_seq OWNED BY tb_instituicao.id;
+
+
+--
+-- TOC entry 1953 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: tb_instituicao_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_instituicao_id_seq', 1, false);
+
+
+--
+-- TOC entry 177 (class 1259 OID 16466)
+-- Dependencies: 5
+-- Name: tb_matricula; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_matricula (
+    id integer NOT NULL,
+    anoletivo smallint NOT NULL,
+    turno character varying(6) NOT NULL,
+    tipoensino character varying(20) NOT NULL,
+    periodo smallint NOT NULL,
+    turma character(2) NOT NULL,
+    matricvalor money NOT NULL,
+    matricmensalid money NOT NULL
+);
+
+
+ALTER TABLE public.tb_matricula OWNER TO postgres;
+
+--
+-- TOC entry 1954 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: COLUMN tb_matricula.tipoensino; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_matricula.tipoensino IS 'se graduacao ou pos';
+
+
+--
+-- TOC entry 1955 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: COLUMN tb_matricula.periodo; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN tb_matricula.periodo IS 'qual periodo pertence a matricula';
+
+
+--
+-- TOC entry 178 (class 1259 OID 16469)
+-- Dependencies: 5 177
+-- Name: tb_matricula_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_matricula_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_matricula_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1956 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: tb_matricula_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_matricula_id_seq OWNED BY tb_matricula.id;
+
+
+--
+-- TOC entry 1957 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: tb_matricula_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_matricula_id_seq', 1, false);
+
+
+--
+-- TOC entry 162 (class 1259 OID 16396)
+-- Dependencies: 5
+-- Name: tb_pessoa; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_pessoa (
+    id integer NOT NULL,
+    nome character varying(100) NOT NULL,
+    sexo character varying(10) NOT NULL,
+    datanascim date NOT NULL,
+    cpf character varying(15) NOT NULL,
+    rg character varying(30) NOT NULL,
+    rgorgaoexped character varying(10) NOT NULL,
+    tituloeleitoral character varying(30) NOT NULL,
+    telefonefixo character varying(10)
+);
+
+
+ALTER TABLE public.tb_pessoa OWNER TO postgres;
+
+--
+-- TOC entry 161 (class 1259 OID 16394)
+-- Dependencies: 5 162
+-- Name: tb_pessoa_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_pessoa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_pessoa_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1958 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: tb_pessoa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_pessoa_id_seq OWNED BY tb_pessoa.id;
+
+
+--
+-- TOC entry 1959 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: tb_pessoa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_pessoa_id_seq', 1, false);
+
+
+--
+-- TOC entry 179 (class 1259 OID 16475)
+-- Dependencies: 5
+-- Name: tb_professor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_professor (
+    id integer NOT NULL,
+    matricula character varying(15) NOT NULL,
+    ctpsnumero character varying(25) NOT NULL,
+    ctpsdataexped date NOT NULL
+);
+
+
+ALTER TABLE public.tb_professor OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 16478)
+-- Dependencies: 5 179
+-- Name: tb_professor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_professor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_professor_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1960 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: tb_professor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_professor_id_seq OWNED BY tb_professor.id;
+
+
+--
+-- TOC entry 1961 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: tb_professor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_professor_id_seq', 1, false);
+
+
+--
+-- TOC entry 181 (class 1259 OID 16487)
+-- Dependencies: 5
+-- Name: tb_secretaria; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_secretaria (
+    id integer NOT NULL,
+    matricula character varying(15) NOT NULL,
+    ctpsnumero character varying(25) NOT NULL,
+    ctpsdataexped date NOT NULL
+);
+
+
+ALTER TABLE public.tb_secretaria OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 16490)
+-- Dependencies: 181 5
+-- Name: tb_secretaria_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_secretaria_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_secretaria_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1962 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: tb_secretaria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_secretaria_id_seq OWNED BY tb_secretaria.id;
+
+
+--
+-- TOC entry 1963 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: tb_secretaria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_secretaria_id_seq', 1, false);
+
+
+--
+-- TOC entry 183 (class 1259 OID 16499)
+-- Dependencies: 5
+-- Name: tb_telefone; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_telefone (
+    id integer NOT NULL,
+    ddd character varying(4),
+    tipotelef character varying(15),
+    numero character varying(11)
+);
+
+
+ALTER TABLE public.tb_telefone OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 16502)
+-- Dependencies: 5 183
+-- Name: tb_telefone_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tb_telefone_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tb_telefone_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1964 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: tb_telefone_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tb_telefone_id_seq OWNED BY tb_telefone.id;
+
+
+--
+-- TOC entry 1965 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: tb_telefone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tb_telefone_id_seq', 1, false);
+
+
+--
+-- TOC entry 1903 (class 2604 OID 16407)
+-- Dependencies: 164 163
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_administardor ALTER COLUMN id SET DEFAULT nextval('tb_administardor_id_seq'::regclass);
+
+
+--
+-- TOC entry 1904 (class 2604 OID 16416)
+-- Dependencies: 166 165
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_aluno ALTER COLUMN id SET DEFAULT nextval('tb_aluno_id_seq'::regclass);
+
+
+--
+-- TOC entry 1905 (class 2604 OID 16425)
+-- Dependencies: 168 167
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_coordenador ALTER COLUMN id SET DEFAULT nextval('tb_coordenador_id_seq'::regclass);
+
+
+--
+-- TOC entry 1906 (class 2604 OID 16434)
+-- Dependencies: 170 169
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_curso ALTER COLUMN id SET DEFAULT nextval('tb_curso_id_seq'::regclass);
+
+
+--
+-- TOC entry 1907 (class 2604 OID 16443)
+-- Dependencies: 172 171
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_disciplina ALTER COLUMN id SET DEFAULT nextval('tb_disciplina_id_seq'::regclass);
+
+
+--
+-- TOC entry 1908 (class 2604 OID 16452)
+-- Dependencies: 174 173
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_endereco ALTER COLUMN id SET DEFAULT nextval('tb_endereco_id_seq'::regclass);
+
+
+--
+-- TOC entry 1909 (class 2604 OID 16462)
+-- Dependencies: 176 175
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_instituicao ALTER COLUMN id SET DEFAULT nextval('tb_instituicao_id_seq'::regclass);
+
+
+--
+-- TOC entry 1910 (class 2604 OID 16471)
+-- Dependencies: 178 177
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_matricula ALTER COLUMN id SET DEFAULT nextval('tb_matricula_id_seq'::regclass);
+
+
+--
+-- TOC entry 1902 (class 2604 OID 16399)
+-- Dependencies: 162 161 162
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_pessoa ALTER COLUMN id SET DEFAULT nextval('tb_pessoa_id_seq'::regclass);
+
+
+--
+-- TOC entry 1911 (class 2604 OID 16480)
+-- Dependencies: 180 179
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_professor ALTER COLUMN id SET DEFAULT nextval('tb_professor_id_seq'::regclass);
+
+
+--
+-- TOC entry 1912 (class 2604 OID 16492)
+-- Dependencies: 182 181
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_secretaria ALTER COLUMN id SET DEFAULT nextval('tb_secretaria_id_seq'::regclass);
+
+
+--
+-- TOC entry 1913 (class 2604 OID 16504)
+-- Dependencies: 184 183
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE tb_telefone ALTER COLUMN id SET DEFAULT nextval('tb_telefone_id_seq'::regclass);
+
+
+--
+-- TOC entry 1917 (class 0 OID 16402)
+-- Dependencies: 163
+-- Data for Name: tb_administardor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_administardor (id, matricula, ctpsnumero, ctpsdataexped) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1918 (class 0 OID 16411)
+-- Dependencies: 165
+-- Data for Name: tb_aluno; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_aluno (id, matricula) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1919 (class 0 OID 16420)
+-- Dependencies: 167
+-- Data for Name: tb_coordenador; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_coordenador (id, matricula, ctpsnumero, ctpsdataexped) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1920 (class 0 OID 16429)
+-- Dependencies: 169
+-- Data for Name: tb_curso; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_curso (id, cod, nome, cursodescr, numperiodos, cursoarea) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1921 (class 0 OID 16438)
+-- Dependencies: 171
+-- Data for Name: tb_disciplina; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_disciplina (id, tipoensino, descricao, cargahoraria, modulo, ano) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1922 (class 0 OID 16447)
+-- Dependencies: 173
+-- Data for Name: tb_endereco; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_endereco (id, endereco, numero, complemento, bairro, cidade, estado, cep) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1923 (class 0 OID 16457)
+-- Dependencies: 175
+-- Data for Name: tb_instituicao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_instituicao (id, nome) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1924 (class 0 OID 16466)
+-- Dependencies: 177
+-- Data for Name: tb_matricula; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_matricula (id, anoletivo, turno, tipoensino, periodo, turma, matricvalor, matricmensalid) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1916 (class 0 OID 16396)
+-- Dependencies: 162
+-- Data for Name: tb_pessoa; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_pessoa (id, nome, sexo, datanascim, cpf, rg, rgorgaoexped, tituloeleitoral, telefonefixo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1925 (class 0 OID 16475)
+-- Dependencies: 179
+-- Data for Name: tb_professor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_professor (id, matricula, ctpsnumero, ctpsdataexped) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1926 (class 0 OID 16487)
+-- Dependencies: 181
+-- Data for Name: tb_secretaria; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_secretaria (id, matricula, ctpsnumero, ctpsdataexped) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1927 (class 0 OID 16499)
+-- Dependencies: 183
+-- Data for Name: tb_telefone; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_telefone (id, ddd, tipotelef, numero) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1915 (class 2606 OID 16401)
+-- Dependencies: 162 162
+-- Name: tb_pessoa_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_pessoa
+    ADD CONSTRAINT tb_pessoa_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1932 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2017-02-18 02:46:53
+
+--
+-- PostgreSQL database dump complete
+--
+
