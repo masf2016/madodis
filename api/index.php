@@ -9,18 +9,7 @@ function getConnection() {
 
 $app = new Slim\App();
 
-$app->get('/teste', function ($request, $response) {
-   $query = 'SELECT * FROM table_name';
-    try {
-        $db = getConnection();
-        $stmt = $db->query($query);
-        $dados = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $db = null;
-        $response->getBody()->write(json_encode($dados));
-    } catch(PDOException $e) {
-        $response->getBody()->write(json_encode($e->getMessage()));
-    }
-});
+require_once 'aluno.php';
 
 $app->run();
 
