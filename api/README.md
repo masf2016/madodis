@@ -1,0 +1,1 @@
+Esta pasta contem um exemplo em PDO para fazer a conexão com o banco e fazer um select em uma tabela no banco de dados essa seria a maneira mais prática pra fazer uma API Restful para utilizar no backend e usar o angular para fazer o frontend maneira mais rápida de terminar o desenvolvimento
