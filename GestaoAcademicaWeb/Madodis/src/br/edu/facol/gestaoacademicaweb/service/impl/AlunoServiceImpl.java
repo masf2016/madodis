@@ -11,34 +11,36 @@ import br.edu.facol.gestaoacademicaweb.pojo.Aluno;
 import br.edu.facol.gestaoacademicaweb.service.AlunoService;
 
 @Service("alunoService")
-public class AlunoServiceImpl implements AlunoService{
+public class AlunoServiceImpl implements AlunoService {
 
 	@Autowired
 	private AlunoDAO alunoDAO;
 	
 	@Transactional
 	public void adicionarAluno(Aluno aluno) {
-		alunoDAO.adicionarAluno(aluno);
+		alunoDAO.salvar(aluno);
 	}
 
 	@Transactional
 	public void removerAluno(int id) {
-		alunoDAO.removerAluno(id);
+		alunoDAO.remover(id);
 	}
 
 	@Transactional
-	public void atualizaAluno(Aluno aluno) {
-		alunoDAO.atualizaAluno(aluno);
+	public void atualizarAluno(Aluno aluno) {
+		alunoDAO.atualizar(aluno);
 	}
 
 	@Override
-	public List<Aluno> listaAlunos() {
-		return alunoDAO.listaAlunos();
+	@Transactional
+	public List<Aluno> listarAlunos() {
+		return alunoDAO.listarTodos();
 	}
 
 	@Override
-	public Aluno alunoById(int id) {
-		return alunoDAO.alunoById(id);
+	@Transactional
+	public Aluno getAlunoById(int id) {
+		return alunoDAO.getById(id);
 	}
 
 }

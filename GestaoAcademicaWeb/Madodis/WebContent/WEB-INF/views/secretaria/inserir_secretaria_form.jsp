@@ -25,17 +25,17 @@
 			integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
 			crossorigin="anonymous"></script>
 		
-		<title>Cadastro de Alunos</title>
+		<title>Cadastro de Secretarias</title>
 	</head>
 	<body>
 		<div class="container">
 			<h3>
 				<c:choose>
-					<c:when test="${aluno.id < 1}">
-						<legend>Cadastrar Aluno</legend>
+					<c:when test="${secretaria.id < 1}">
+						<legend>Cadastrar Secretaria</legend>
 					</c:when>
 					<c:otherwise>
-						<legend>Atualizar Aluno</legend>
+						<legend>Atualizar Secretaria</legend>
 					</c:otherwise>
 				</c:choose>
 			</h3>
@@ -45,16 +45,16 @@
 			<div class="col-mod-4">
 			
 				<c:choose>
-					<c:when test="${aluno.id < 1}">
-						<c:set var="my_action" value="adicionarAluno.html"/>
+					<c:when test="${secretaria.id < 1}">
+						<c:set var="my_action" value="adicionarSecretaria.html"/>
 					</c:when>
 					<c:otherwise>
-						<c:set var="my_action" value="atualizarAluno.html"/>
+						<c:set var="my_action" value="atualizarSecretaria.html"/>
 					</c:otherwise>
 				</c:choose>
 			
 				<form:form method="post" action="${my_action}"
-					commandName="aluno">
+					commandName="secretaria">
 					<label>Nome:</label>
 					<form:input path="nome" cssClass="form-control"></form:input>
 					<br />
@@ -76,6 +76,12 @@
 					<br />
 					<label>Orgão Expedidor:</label>
 					<form:input path="rgOrgaoExpedidor" cssClass="form-control"></form:input>
+					<br />
+					<label>CTPS Numero:</label>
+					<form:input path="ctpsNumero" cssClass="form-control"></form:input>
+					<br />
+					<label>CTPS Data Expedição:</label>
+					<form:input type="date" path="ctpsDataExpedicao" cssClass="form-control"></form:input>
 					<br />
 					<label>Nome do pai:</label>
 					<form:input path="nomePai" cssClass="form-control"></form:input>

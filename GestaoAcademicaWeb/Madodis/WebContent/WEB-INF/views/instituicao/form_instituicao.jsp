@@ -25,17 +25,17 @@
 			integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
 			crossorigin="anonymous"></script>
 		
-		<title>Cadastro de Alunos</title>
+		<title>Cadastro/Atualizar de Instituição</title>
 	</head>
 	<body>
 		<div class="container">
 			<h3>
 				<c:choose>
-					<c:when test="${aluno.id < 1}">
-						<legend>Cadastrar Aluno</legend>
+					<c:when test="${instituicao.id < 1}">
+						<legend>Cadastrar Instituição</legend>
 					</c:when>
 					<c:otherwise>
-						<legend>Atualizar Aluno</legend>
+						<legend>Atualizar Instituição</legend>
 					</c:otherwise>
 				</c:choose>
 			</h3>
@@ -43,64 +43,33 @@
 		<div class="container">
 			<div class="col-mod-4"></div>
 			<div class="col-mod-4">
-			
+				
 				<c:choose>
-					<c:when test="${aluno.id < 1}">
-						<c:set var="my_action" value="adicionarAluno.html"/>
+					<c:when test="${instituicao.id < 1}">
+						<c:set var="my_action" value="adicionarInstituicao.html"/>
 					</c:when>
 					<c:otherwise>
-						<c:set var="my_action" value="atualizarAluno.html"/>
+						<c:set var="my_action" value="atualizarInstituicao.html"/>
 					</c:otherwise>
 				</c:choose>
-			
-				<form:form method="post" action="${my_action}"
-					commandName="aluno">
-					<label>Nome:</label>
-					<form:input path="nome" cssClass="form-control"></form:input>
+				
+				<form:form method="post" action="${my_action}" commandName="instituicao">
+					<label>Nome Fantasia:</label>
+					<form:input path="nomeFantasia" cssClass="form-control" size="100" maxlength="100"  />
 					<br />
-					<label>Cpf:</label>
-					<form:input path="cpf" cssClass="form-control"></form:input>
+					
+					<label>Nome Empresarial:</label>
+					<form:input path="nomeEmpresarial" cssClass="form-control" size="100" maxlength="100" />
 					<br />
-					<label>Sexo:</label>
-					<select name="sexo" id="sexo">
-						<c:forEach items="${sexos}" var="sexo">
-							<option value="${sexo}">${sexo}</option>
-						</c:forEach>
-					</select>
+					
+					<label>CNPJ:</label>
+					<form:input path="cnpj" cssClass="form-control" />
 					<br />
-					<label>Titulo de eleitor:</label>
-					<form:input path="tituloEleitoral" cssClass="form-control"></form:input>
+					
+					<label>Inscrição Estadual:</label>
+					<form:input path="inscricaoEstadual" cssClass="form-control" />
 					<br />
-					<label>RG:</label>
-					<form:input path="rg" cssClass="form-control"></form:input>
-					<br />
-					<label>Orgão Expedidor:</label>
-					<form:input path="rgOrgaoExpedidor" cssClass="form-control"></form:input>
-					<br />
-					<label>Nome do pai:</label>
-					<form:input path="nomePai" cssClass="form-control"></form:input>
-					<br />
-					<label>Nome da Mãe:</label>
-					<form:input path="nomeMae" cssClass="form-control"></form:input>
-					<br />
-					<label>Data Nascimento:</label>
-					<form:input type="date" path="dataNascimento" cssClass="form-control"></form:input>
-					<br />
-					<label>Nacionalidade:</label>
-					<form:input path="nacionalidade" cssClass="form-control"></form:input>
-					<br />
-					<label>Naturalidade:</label>
-					<form:input path="naturalidade" cssClass="form-control"></form:input>
-					<br />
-					<label>Matrícula:</label>
-					<form:input path="matricula" cssClass="form-control"></form:input>
-					<br />
-					<label>Email:</label>
-					<form:input path="email" cssClass="form-control"></form:input>
-					<br />
-					<label>Senha:</label>
-					<form:input path="senha" cssClass="form-control"></form:input>
-					<br />
+					
 					<label>Logradouro:</label>
 					<form:input path="endereco.logradouro" cssClass="form-control" />
 					<br />

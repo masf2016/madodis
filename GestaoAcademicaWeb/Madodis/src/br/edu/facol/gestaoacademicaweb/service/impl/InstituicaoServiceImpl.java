@@ -27,16 +27,18 @@ public class InstituicaoServiceImpl implements InstituicaoService {
 	}
 
 	@Transactional
-	public void atualizaInstituicao(Instituicao instituicao) {
+	public void atualizarInstituicao(Instituicao instituicao) {
 		instituicaoDAO.atualizar(instituicao);
 	}
 
 	@Override
+	@Transactional
 	public List<Instituicao> listarInstituicoes() {
 		return instituicaoDAO.listarTodos();
 	}
 
 	@Override
+	@Transactional
 	public Instituicao getInstituicaoById(int id) {
 		return instituicaoDAO.getById(id);
 	}
