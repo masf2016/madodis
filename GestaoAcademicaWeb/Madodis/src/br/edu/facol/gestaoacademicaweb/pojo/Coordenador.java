@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TB_COORDENADOR")
 public class Coordenador extends Funcionario {
 
+	@NotNull(message="Em exercicio n�o pode ser nulo ou vazio.")
 	@Column(name="EM_EXERCICIO")
 	private boolean emExercicio;
 	
@@ -47,5 +49,5 @@ public class Coordenador extends Funcionario {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }

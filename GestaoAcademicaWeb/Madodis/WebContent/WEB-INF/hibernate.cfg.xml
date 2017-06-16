@@ -17,7 +17,20 @@
 		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Instituicao"/>
 		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Professor"/>
 		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Aluno"/>
-		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Curso"/>	
-		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Secretaria"/>			    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Secretaria"/>
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.PlanoDeEnsino"/>
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Disciplina"/>			
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Curso"/> 
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Coordenador"/>  
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Aula"/>   
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Turma"/> 
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Matricula"/> 
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Contato"/>    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.AlunoFrequencia"/>    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Frequencia"/>    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.AlunoProva"/>    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.Prova"/>    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.DiarioDeClasse"/>    
+		<mapping class="br.edu.facol.gestaoacademicaweb.pojo.AulaArquivo"/> 
 	</session-factory>
 </hibernate-configuration>	

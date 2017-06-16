@@ -1,64 +1,53 @@
-<html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
- 
-<title>Início</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Madodis - Home</title>
+	<link rel="favicon" href="/madodis/resources/images/favicon.png">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="/madodis/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="/madodis/resources/css/font-awesome.min.css"> 
+	<link rel="stylesheet" href="/madodis/resources/css/bootstrap-theme.css" media="screen"> 
+	<link rel="stylesheet" href="/madodis/resources/css/style.css">
+    <link rel='stylesheet' id='camera-css'  href='/madodis/resources/css/camera.css' type='text/css' media='all'> 
+    <link rel='stylesheet' href="/madodis/resources/css/jAlert.css" />
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="/madodis/resources/js/html5shiv.js"></script>
+	<script src="/madodis/resources/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
-<div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Gestao Academica Web</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class=""><a href="#">Home</a></li>
-              <li><a href="#">Sobre</a></li>
-              <li><a href="#">Contato</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastros<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="listarProfessores">Professores</a></li>
-                  <li><a href="listarAlunos">Alunos</a></li>
-                  <li><a href="listarCursos">Cursos</a></li>
-                  <li><a href="listarInstituicoes">Instituições</a></li>
-                  <li><a href="listarSecretarias">Secretarias</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>     
-    </div> <!-- /container -->
+	<jsp:include page="menu.jsp">
+		<jsp:param value="${user}" name="user"/>
+	</jsp:include>
 
+	<!-- Header -->
+	<header id="head">
+		<div class="container">
+             <div class="heading-text">							
+							<p>Olá <c:out value="${user.nome}" />, bem vindo(a) ao</p>
+							<h1 class="animated flipInY delay1">Madodis</h1>
+							<p>Módulo Acadêmico para o Gerenciamento de Corpo Docente e Discente.</p>
+						</div>
+            
+					<div class="fluid_container">                       
+                    	<div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+                        
+                        </div> 
+                    </div><!-- #camera_wrap_3 -->
+                </div><!-- .fluid_container -->
+		</div>
+	</header>
+	<!-- /Header -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
-    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+	<jsp:include page="rodape.jsp" />
+    
+    
 </body>
 </html>

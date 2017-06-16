@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.facol.gestaoacademicaweb.dao.CursoDAO;
 import br.edu.facol.gestaoacademicaweb.pojo.Curso;
+import br.edu.facol.gestaoacademicaweb.pojo.Instituicao;
+import br.edu.facol.gestaoacademicaweb.pojo.TipoEnsino;
 import br.edu.facol.gestaoacademicaweb.service.CursoService;
 
 @Service("cursoService")
@@ -18,28 +20,37 @@ public class CursoServiceImpl implements CursoService{
 	
 	@Transactional
 	public void adicionarCurso(Curso curso) { 
-		cursoDAO.adicionarCurso(curso);
+		cursoDAO.salvar(curso);
 	}
 
-	@Override
+	@Transactional
 	public void removerCurso(int id) {
-		cursoDAO.removerCurso(id);
+		cursoDAO.remover(id);
 	}
 
-	@Override
-	public void atualizaCurso(Curso curso) {
-		cursoDAO.atualizaCurso(curso);
+	@Transactional
+	public void atualizarCurso(Curso curso) {
+		cursoDAO.atualizar(curso);
 	}
 
-	@Override
+	@Transactional
 	public List<Curso> listaCursos() {
-		return cursoDAO.listaCursos();
+		return cursoDAO.listarTodos();
+	}
+	
+	@Transactional
+	public List<Curso> listaCursos(Instituicao instituicao) {
+		return cursoDAO.listarTodos(instituicao);
+	}
+	
+	@Transactional
+	public List<Curso> listaCursos(Instituicao instituicao, TipoEnsino tipo) {
+		return cursoDAO.listarTodos(instituicao, tipo);
 	}
 
-	@Override
-	public Curso cursoById(int id) {
-		return cursoDAO.cursoById(id);
+	@Transactional
+	public Curso getCursoById(int id) {
+		return cursoDAO.getById(id);
 	}
-
 
 }

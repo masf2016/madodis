@@ -1,42 +1,119 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
- 
-<title>Cadastro de Curso</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madodis - Cadastrar/Alterar Cursos</title>
+<link rel="favicon" href="/madodis/resources/images/favicon.png">
+<link rel="stylesheet" media="screen"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<link rel="stylesheet" href="/madodis/resources/css/bootstrap.css">
+<link rel="stylesheet"
+	href="/madodis/resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="/madodis/resources/css/bootstrap-theme.css"
+	media="screen">
+<link rel="stylesheet" href="/madodis/resources/css/style.css">
+<link rel='stylesheet' id='camera-css'
+	href='/madodis/resources/css/camera.css' type='text/css' media='all'>
+	<link rel='stylesheet' href="/madodis/resources/css/jAlert.css" />
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+	<script src="/madodis/resources/js/html5shiv.js"></script>
+	<script src="/madodis/resources/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
-<div class="container">
-<h3><legend>Formulário de Cadastro de Cursos</legend></h3>
-</div>
-<div class="container">
-<div class="col-mod-4"></div>
-<div class="col-mod-4">
-<form:form method="post" action="adicionarCurso.html" commandName="curso">
-	<label>Nome:</label>
-		<form:input path="nome"  cssClass="form-control"></form:input><br/>		
-</form:form>
-<input type="submit" value="Salvar" class="btn btn-success"/>
-</div>
-<div class="col-mod-4"></div>
-</div>
-</body>
+
+	<jsp:include page="../menu.jsp">
+		<jsp:param value="${user}" name="user" />
+	</jsp:include>
+		<div class="container">
+			<h3>
+				<c:choose>
+					<c:when test="${curso.id < 1}">
+						<legend>Cadastrar Curso</legend>
+					</c:when>
+					<c:otherwise>
+						<legend>Atualizar Curso</legend>
+					</c:otherwise>
+				</c:choose>
+			</h3>
+		</div>
+		<div class="container">
+			<div class="col-mod-3"></div>
+			<div class="col-mod-3">
+	
+				<c:choose>
+					<c:when test="${curso.id < 1}">
+						<c:set var="my_action" value="/madodis/adicionarCurso" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="my_action" value="/madodis/atualizarCurso" />
+					</c:otherwise>
+				</c:choose>
+	
+				<form:form method="post" action="${my_action}" commandName="curso">
+					<form:hidden path="id"/>
+					<div class="form-group">
+						<div class="col-sm-6"> 
+							<label>Nome:</label>
+							<form:input path="nome" cssClass="form-control"></form:input>
+							<form:errors path="nome" cssClass="error"></form:errors>
+						</div>
+						<div class="col-sm-6">
+							<label>Sigla:</label>
+							<form:input path="sigla" cssClass="form-control"></form:input>
+							<form:errors path="sigla" cssClass="error"></form:errors>
+						</div>
+						<div class="col-sm-6">
+							<label>Descricao:</label>
+							<form:textarea path="descricao" cssClass="form-control" style="resize:none"></form:textarea>
+							<form:errors path="descricao" cssClass="error"></form:errors>
+						</div>
+						<div class="col-sm-6">
+							<label>Codigo do Curso no MEC:</label>
+							<form:input path="codigoCursoMec" cssClass="form-control"></form:input>
+							<form:errors path="codigoCursoMec" cssClass="error"></form:errors>
+						</div>
+						<div class="col-sm-6">
+							<label>Numero de periodos:</label>
+							<form:input path="periodos" cssClass="form-control"></form:input>
+							<form:errors path="periodos" cssClass="error"></form:errors>
+						</div>
+						<div class="col-sm-6">
+							<label>Area:</label>
+							<form:input path="area" cssClass="form-control"></form:input>
+							<form:errors path="area" cssClass="error"></form:errors>
+						</div>
+						<div class="col-sm-6">
+							<label>Tipo de Ensino:</label>
+							<form:select cssClass="form-control" path="tipoEnsino">
+								<form:options items="${tipoEnsinos}" />
+							</form:select>
+						</div>
+						<div class="col-sm-6">
+							<label>Data de Criacao:</label>
+							<form:input type="date" path="dataCriacao" cssClass="form-control"></form:input>
+							<form:errors path="dataCriacao" cssClass="error"></form:errors>
+						</div>
+					</div>
+					<div class="form-group">
+							<div class="col-sm-10">
+		    					<br/>
+		    					<br/>
+							<input type="submit" value="Salvar" class="btn btn-success" />
+							</div>
+						</div>
+				<br />
+				<br />
+					</form:form>
+					</div>
+					<div class="col-mod-4"></div>
+				</div>
+		
+		<jsp:include page="../rodape.jsp" />
+	</body>
 </html>

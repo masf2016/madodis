@@ -2,32 +2,48 @@ package br.edu.facol.gestaoacademicaweb.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="TB_ENDERECO")
 public class Endereco extends BaseObject {
 
+	@NotNull(message="Logradouro não pode ser nulo ou vazio.")
+	@Size(min=1, message="Logradouro não pode ser nulo ou vazio.")
 	@Column(name="LOGRADOURO")
 	private String logradouro;
 	
+	@NotNull(message="Numero não pode ser nulo ou vazio.")
+	@Size(min=1, message="Numero não pode ser nulo ou vazio.")
 	@Column(name="numero")
 	private String numero;
 	
 	@Column(name="complemento")
 	private String complemento;
 	
+	@NotNull(message="CEP não pode ser nulo ou vazio.")
+	@Size(min=1, message="CEP não pode ser nulo ou vazio.")
 	@Column(name="cep")
 	private String cep;
 	
+	@NotNull(message="Bairro não pode ser nulo ou vazio.")
+	@Size(min=1, message="Bairro não pode ser nulo ou vazio.")
 	@Column(name="bairro")
 	private String bairro;
 	
+	@NotNull(message="Cidade não pode ser nulo ou vazio.")
+	@Size(min=1, message="Cidade não pode ser nulo ou vazio.")
 	@Column(name="cidade")
 	private String cidade;
 	
+	@NotNull(message="Estado não pode ser nulo ou vazio.")
 	@Column(name="estado")
-	private String estado;
+	@Enumerated(value=EnumType.ORDINAL)
+	private Estado estado;
 	
 	public Endereco() {
 		super();
@@ -82,11 +98,11 @@ public class Endereco extends BaseObject {
 		this.cidade = cidade;
 	}
 
-	public String getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 

@@ -5,18 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TB_PROFESSOR")
 public class Professor extends Funcionario {
 
+	@NotNull(message="Titulação não pode ser nulo ou vazio.")
 	@Column(name="TITULACAO")
 	@Enumerated(value=EnumType.ORDINAL)
 	private Titulacao titulacao;
-	
-	public Professor() {
-		super();
-	}
 
 	public Titulacao getTitulacao() {
 		return titulacao;
@@ -37,4 +35,5 @@ public class Professor extends Funcionario {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }

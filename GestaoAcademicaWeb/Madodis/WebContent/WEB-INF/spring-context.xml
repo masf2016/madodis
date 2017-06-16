@@ -8,16 +8,35 @@
       xmlns:p="http://www.springframework.org/schema/p"
       xmlns:tx="http://www.springframework.org/schema/tx"
       xmlns:util="http://www.springframework.org/schema/util"
+      xmlns:mvc="http://www.springframework.org/schema/mvc"
       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+          http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
    
 	<context:annotation-config />
 	<context:component-scan base-package="br.edu.facol.gestaoacademicaweb"/>
+	
+	<mvc:resources location="/WEB-INF/resources/" mapping="/resources/**"></mvc:resources>
+	<mvc:annotation-driven conversion-service="conversionService" />
+	
+	<bean id="conversionService"
+	      class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	    <property name="converters">
+	        <list>
+	            <bean class="br.edu.facol.gestaoacademicaweb.converter.ConverterParaCurso"/>
+	            <bean class="br.edu.facol.gestaoacademicaweb.converter.ConverterParaInstituicao"/>
+	            <bean class="br.edu.facol.gestaoacademicaweb.converter.ConverterParaProfessor"/>
+	            <bean class="br.edu.facol.gestaoacademicaweb.converter.ConverterParaAluno"/>
+	            <bean class="br.edu.facol.gestaoacademicaweb.converter.ConverterParaTurma"/>
+	            <bean class="br.edu.facol.gestaoacademicaweb.converter.ConverterParaDisciplina"/>
+	        </list>
+	    </property>
+	</bean>
 	
 	<bean id="jspViewResolver"
 			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -51,12 +70,32 @@
 				</props>
 			</property>
 	</bean>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="suportekalangus@gmail.com" />
+		<property name="password" value="madodis2017" />
+ 
+		<!-- The name of the property, following JavaBean naming conventions -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="multipartResolver"   
+			class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
 		
 	<tx:annotation-driven/>
 	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"/>	
-	</bean>	
+	</bean>
 	
 </beans>

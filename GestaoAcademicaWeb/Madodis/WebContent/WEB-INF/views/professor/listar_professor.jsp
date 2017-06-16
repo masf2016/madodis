@@ -1,45 +1,67 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link rel='stylesheet'
-			href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' />
-		
-		<!-- Optional theme -->
-		<link rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-			integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX"
-			crossorigin="anonymous">
-		
-		<!-- Latest compiled and minified JavaScript -->
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-			integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
-			crossorigin="anonymous"></script>
-		
-		<title>Listagem de Professores</title>
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madodis - Listar Docentes</title>
+<link rel="favicon" href="/madodis/resources/images/favicon.png">
+<link rel="stylesheet" media="screen"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<link rel="stylesheet" href="/madodis/resources/css/bootstrap.css">
+<link rel="stylesheet"
+	href="/madodis/resources/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="/madodis/resources/css/bootstrap-theme.css" media="screen">
+<link rel="stylesheet" href="/madodis/resources/css/style.css">
+<link rel='stylesheet' id='camera-css'
+	href='/madodis/resources/css/camera.css' type='text/css' media='all'>
+	<link rel='stylesheet' href="/madodis/resources/css/jAlert.css" />
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+	<script src="/madodis/resources/js/html5shiv.js"></script>
+	<script src="/madodis/resources/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	
+	<jsp:include page="../menu.jsp">
+		<jsp:param value="${user}" name="user"/>
+	</jsp:include>
+	
+	
 		<div class="container">
 			<h3>
 				<legend>
-					<a href="home">Professores Cadastrados</a>
+					<a href="javascript:void(0)">Docente Cadastrado</a>
 				</legend>
 			</h3>
 		</div>
 		<c:if test="${empty professorList}">
 			<div class="container">
 				<div class="col-mod-4">
-					<h4>Nada existe registro de professores para mostrar!</h4>
+					<h4>Nada existe registro de docentes para mostrar!</h4>
 				</div>
 			</div>
 		</c:if>
 		<div class="container">
+		
+			<c:if test="${not empty error}">
+			   <%-- do want you want with ${error} --%>
+			   <div class="alert alert-danger">
+				  <strong>Erro!</strong> <c:out value="${error}" />
+				</div>
+			</c:if>
+			
+			<c:if test="${not empty success}">
+			   <%-- do want you want with ${error} --%>
+			   <div class="alert alert-success">
+				  <strong>Sucesso!</strong> <c:out value="${success}" />
+				</div>
+			</c:if>
+		
 			<div class="col-mod-4"></div>
 			<br>
 			<br>
@@ -50,28 +72,56 @@
 						<th>Nome</th>
 						<th>Cpf</th>
 						<th>Matricula</th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
+						<th>Aulas</th>
 					</tr>
 					<c:forEach items="${professorList}" var="professor">
 						<tr>
 							<td>${professor.nome}</td>
 							<td>${professor.cpf}</td>
 							<td>${professor.matricula}</td>
-							<td><a href="remover/professor/${professor.id}"><span
-									class="glyphicon glyphicon-remove-circle"></span></a></td>
-							<td><a href="update/professor/${professor.id}"><span 
-									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a href="/madodis/getAulas/${professor.id}"><span 
+									class="glyphicon glyphicon-list-alt" title="Aulas"></span></a></td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
 			<div>
-				<a href="form_professores"><button class="btn btn-success">
+				<a href="/madodis/form_professores"><button class="btn btn-success">
 						<i class="glyphicon glyphicon-plus-sign"></i>&nbsp;Novo
 					</button></a>
 			</div>
 			<div class="col-mod-4"></div>
 		</div>
+		
+		<jsp:include page="../rodape.jsp" />
+		
+		<script>
+			function removerProfessor(id) {
+				$.jAlert({
+			        'title': 'Remover',
+			        'content': 'Voce deseja remover o docente?',
+			        'theme': 'blue',
+			        'btns': [
+			        			{ 
+			        				'text': 'Sim', 
+			        				'onClick' : function(e, btn) {
+			        					$.get("/madodis/remover/professor/" + id, function(data) {
+			        						document.open();
+			        						document.write(data);
+			        						document.close();
+			        					});
+			        				}
+			        			}, 
+			        			{
+			        				'text' : 'Não',
+			        				'onClick' : function (e, btn) {
+			        					btn.parents('.jAlert').closeAlert();
+			        				}
+			        			}
+							]
+			      });
+			}
+		</script>
+		
 	</body>
 </html>

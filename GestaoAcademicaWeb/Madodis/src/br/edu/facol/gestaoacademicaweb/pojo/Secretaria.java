@@ -6,7 +6,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TB_SECRETARIA")
 public class Secretaria extends Funcionario {
-
+	
 	public Secretaria() {
 		super(); 
 	}
